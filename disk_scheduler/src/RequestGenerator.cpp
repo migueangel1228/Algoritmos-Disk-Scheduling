@@ -18,7 +18,7 @@ vector<int> RequestGenerator::generate() const {
     mt19937 rng(seed);
     uniform_int_distribution<int> dist(0, totalCylinders - 1);
     vector<int> reqs(numberOfRequests);
-    generate(reqs.begin(), reqs.end(), [&]() { return dist(rng); });
+    std::generate(reqs.begin(), reqs.end(), [&]() { return dist(rng); });
     return reqs;
 }
 
