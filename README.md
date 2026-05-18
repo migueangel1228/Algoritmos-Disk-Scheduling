@@ -1,4 +1,4 @@
-# 💽 Disk Scheduling Simulator
+# Disk Scheduling Simulator
 
 > **Curso:** Sistemas Operativos — 300CIG011  
 > **Assignment:** III — I/O Management & Disk Scheduling  
@@ -8,7 +8,7 @@ Simulador de tres algoritmos clásicos de *disk scheduling* sobre un disco de **
 
 ---
 
-## 📐 Algoritmos Implementados
+## Algoritmos Implementados
 
 | Algoritmo | Descripción | Dirección inicial | Complejidad |
 |-----------|-------------|-------------------|-------------|
@@ -20,7 +20,7 @@ Simulador de tres algoritmos clásicos de *disk scheduling* sobre un disco de **
 
 ---
 
-## 🗂️ Estructura del Proyecto
+## Estructura del Proyecto
 
 ```
 Algoritmos-Disk-Scheduling/
@@ -47,7 +47,7 @@ Algoritmos-Disk-Scheduling/
 
 ---
 
-## ⚙️ Requisitos
+## Requisitos
 
 | Herramienta | Versión mínima | Notas |
 |-------------|---------------|-------|
@@ -59,7 +59,7 @@ Algoritmos-Disk-Scheduling/
 
 ---
 
-## 🚀 Compilar y Ejecutar
+## Compilar y Ejecutar
 
 ### Desde el directorio `disk_scheduler/`
 
@@ -106,15 +106,9 @@ cd disk_scheduler
 disk_scheduler.exe 2500
 ```
 
-### Flags de compilación
-
-```makefile
-CXXFLAGS = -std=c++17 -Wall -Wextra -Wpedantic -O2
-```
-
 ---
 
-## 📊 Output
+## Output
 
 ### Consola
 
@@ -151,7 +145,7 @@ Total Requests        : 1000
 
 Todos los archivos se crean automáticamente al ejecutar el programa:
 
-#### `results.csv` — Resumen ejecutivo
+#### `results.csv` — Resumen
 
 Contiene una fila por algoritmo con los parámetros de la simulación y la semilla usada:
 
@@ -193,7 +187,7 @@ Step, Cylinder
 
 ---
 
-## 🔁 Reproducibilidad
+## Reproducibilidad
 
 El generador de solicitudes usa `std::mt19937` (Mersenne Twister) con una semilla fija (default: `42`). Esto garantiza que:
 
@@ -208,30 +202,13 @@ static constexpr unsigned int DEFAULT_SEED = 42;
 
 ---
 
-## 🏗️ Decisiones de Diseño
+## Decisiones de Diseño
 
-### Sin `break` ni `continue`
-
-Los algoritmos SCAN y C-SCAN se implementan **sin `break` ni `continue`** separando las solicitudes en dos vectores antes del barrido:
-
-```cpp
-// SCAN — separar solicitudes arriba y abajo de la posición inicial
-vector<int> upper, lower;
-for (const int& req : requests) {
-    if (req < initialHeadPosition) lower.push_back(req);
-    else                           upper.push_back(req);
-}
-sort(upper.begin(), upper.end());                  // orden ascendente
-sort(lower.begin(), lower.end(), greater<int>());  // orden descendente
-
-// La secuencia completa de servicio se construye sin condiciones adicionales
-serviceOrder.insert(serviceOrder.end(), upper.begin(), upper.end());
-serviceOrder.insert(serviceOrder.end(), lower.begin(), lower.end());
-```
+Los algoritmos SCAN y C-SCAN se implementan separando las solicitudes en dos vectores antes del barrido:
 
 ### Separación en clases (SRP)
 
-Cada clase tiene **una única responsabilidad**. `main.cpp` solo instancia y orquesta — no contiene lógica de algoritmos ni de I/O. Esto facilita pruebas unitarias, extensibilidad (agregar un nuevo algoritmo = nueva función en `DiskScheduler`) y legibilidad.
+Cada clase tiene **una única responsabilidad**. `main.cpp` solo instancia y  no contiene lógica de algoritmos. Esto facilita pruebas unitarias, legibilidad y agregar nuevos algoritmos, (basta con agregar una nueva función en `DiskScheduler`).
 
 ### `mt19937` para solicitudes
 
@@ -239,7 +216,7 @@ Cada clase tiene **una única responsabilidad**. `main.cpp` solo instancia y orq
 
 ---
 
-## 📈 Análisis Comparativo
+## Análisis Comparativo
 
 Los siguientes resultados se obtienen con **semilla 42** y tres posiciones iniciales distintas:
 
@@ -259,24 +236,13 @@ Los siguientes resultados se obtienen con **semilla 42** y tres posiciones inici
 
 ---
 
-## 📋 Restricciones del Proyecto
-
-- ✅ Solo biblioteca estándar C++ (`<bits/stdc++.h>`)
-- ✅ Sin `break` ni `continue` en ningún algoritmo
-- ✅ Separación en clases con archivos `.h` / `.cpp`
-- ✅ `main.cpp` < 60 líneas
-- ✅ Comentarios Doxygen en todos los métodos
-- ✅ Compilado con `-Wall -Wextra -Wpedantic` sin warnings
-- ✅ Validación del argumento de línea de comandos
-- ✅ Semilla guardada para reproducibilidad total
-
 ---
 
-## 👤 Autor
+##  Autor
 
-**Miguel Ángel**  
+**Miguel Ángel | Esteban Arismendi |Samuel Alberto Bonilla**  
 Curso: Sistemas Operativos — 300CIG011  
-Universidad — 2025
+Universidad Javeriana cali — 2026_1
 
 ---
 
