@@ -1,0 +1,4 @@
+Algorithm,TotalMovement,InitialHead,Cylinders,TotalRequests,Seed
+FCFS,1684374,2500,5000,1000,42
+SCAN,5003,2500,5000,1000,42
+CSCAN,9993,2500,5000,1000,42
