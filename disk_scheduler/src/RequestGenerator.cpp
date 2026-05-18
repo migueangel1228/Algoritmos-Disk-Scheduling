@@ -9,14 +9,16 @@
 #include "RequestGenerator.h"
 #include <algorithm>
 
+using namespace std;
+
 RequestGenerator::RequestGenerator(int cylinders, int requests, unsigned int seedValue)
     : totalCylinders(cylinders), numberOfRequests(requests), seed(seedValue) {}
 
-std::vector<int> RequestGenerator::generate() const {
-    std::mt19937 rng(seed);
-    std::uniform_int_distribution<int> dist(0, totalCylinders - 1);
-    std::vector<int> reqs(numberOfRequests);
-    std::generate(reqs.begin(), reqs.end(), [&]() { return dist(rng); });
+vector<int> RequestGenerator::generate() const {
+    mt19937 rng(seed);
+    uniform_int_distribution<int> dist(0, totalCylinders - 1);
+    vector<int> reqs(numberOfRequests);
+    generate(reqs.begin(), reqs.end(), [&]() { return dist(rng); });
     return reqs;
 }
 

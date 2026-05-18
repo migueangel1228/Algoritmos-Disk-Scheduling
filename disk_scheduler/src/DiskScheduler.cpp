@@ -11,14 +11,16 @@
 #include <algorithm>
 #include <cmath>
 
-DiskScheduler::DiskScheduler(int cylinders, int headPos, const std::vector<int>& reqs)
+using namespace std;
+
+DiskScheduler::DiskScheduler(int cylinders, int headPos, const vector<int>& reqs)
     : totalCylinders(cylinders), initialHeadPosition(headPos), requests(reqs) {}
 
-int DiskScheduler::computeTotalMovement(const std::vector<int>& serviceOrder, int startPos) const {
+int DiskScheduler::computeTotalMovement(const vector<int>& serviceOrder, int startPos) const {
     int totalMovement = 0;
     int currentPos = startPos;
     for (const int& req : serviceOrder) {
-        totalMovement += std::abs(req - currentPos);
+        totalMovement += abs(req - currentPos);
         currentPos = req;
     }
     return totalMovement;
@@ -29,8 +31,8 @@ AlgorithmResult DiskScheduler::runFCFS() const {
 }
 
 AlgorithmResult DiskScheduler::runSCAN() const {
-    std::vector<int> serviceOrder;
-    std::vector<int> lower, upper;
+    vector<int> serviceOrder;
+    vector<int> lower, upper;
     
     for (const int& req : requests) {
         if (req < initialHeadPosition) {
@@ -40,8 +42,8 @@ AlgorithmResult DiskScheduler::runSCAN() const {
         }
     }
 
-    std::sort(upper.begin(), upper.end());
-    std::sort(lower.begin(), lower.end(), std::greater<int>());
+    sort(upper.begin(), upper.end());
+    sort(lower.begin(), lower.end(), greater<int>());
 
     serviceOrder.insert(serviceOrder.end(), upper.begin(), upper.end());
     serviceOrder.insert(serviceOrder.end(), lower.begin(), lower.end());
@@ -55,8 +57,8 @@ AlgorithmResult DiskScheduler::runSCAN() const {
 }
 
 AlgorithmResult DiskScheduler::runCSCAN() const {
-    std::vector<int> serviceOrder;
-    std::vector<int> lower, upper;
+    vector<int> serviceOrder;
+    vector<int> lower, upper;
 
     for (const int& req : requests) {
         if (req < initialHeadPosition) {
@@ -66,8 +68,8 @@ AlgorithmResult DiskScheduler::runCSCAN() const {
         }
     }
 
-    std::sort(upper.begin(), upper.end());
-    std::sort(lower.begin(), lower.end());
+    sort(upper.begin(), upper.end());
+    sort(lower.begin(), lower.end());
 
     serviceOrder.insert(serviceOrder.end(), upper.begin(), upper.end());
     serviceOrder.insert(serviceOrder.end(), lower.begin(), lower.end());

@@ -13,11 +13,13 @@
 #include "AlgorithmResult.h"
 #include <vector>
 
+using namespace std;
+
 class DiskScheduler {
 private:
     const int totalCylinders;
     int initialHeadPosition;
-    std::vector<int> requests;
+    vector<int> requests;
 
     /**
      * @brief   Calculates the total head movement for a given service order.
@@ -25,7 +27,7 @@ private:
      * @param   startPos        The initial position of the disk head.
      * @return  The total number of cylinders the head has moved.
      */
-    int computeTotalMovement(const std::vector<int>& serviceOrder, int startPos) const;
+    int computeTotalMovement(const vector<int>& serviceOrder, int startPos) const;
 
 public:
     /**
@@ -34,7 +36,7 @@ public:
      * @param   headPos     The initial position of the disk head.
      * @param   reqs        The vector of cylinder requests to process.
      */
-    DiskScheduler(int cylinders, int headPos, const std::vector<int>& reqs);
+    DiskScheduler(int cylinders, int headPos, const vector<int>& reqs);
 
     /**
      * @brief   Runs the First-Come, First-Served (FCFS) algorithm.

@@ -14,16 +14,18 @@
 #include <string>
 #include <vector>
 
+using namespace std;
+
 class ReportExporter {
 private:
-    std::string outputPath;
+    string outputPath;
 
 public:
     /**
      * @brief   Constructs a ReportExporter.
      * @param   path    The directory where data files will be saved (e.g., "data/").
      */
-    explicit ReportExporter(const std::string& path);
+    explicit ReportExporter(const string& path);
 
     /**
      * @brief   Exports a summary of all algorithm results to a single CSV file.
@@ -33,7 +35,7 @@ public:
      * @param   totalRequests   The total number of requests.
      * @param   seed            The seed used for request generation.
      */
-    void exportResults(const std::vector<AlgorithmResult>& results, int initialHead, int totalCylinders, int totalRequests, unsigned int seed) const;
+    void exportResults(const vector<AlgorithmResult>& results, int initialHead, int totalCylinders, int totalRequests, unsigned int seed) const;
 
     /**
      * @brief   Exports the service order of a single algorithm to a dedicated CSV file.
@@ -48,7 +50,7 @@ public:
      * @param   initialHead     The starting head position.
      * @param   totalCylinders  The total number of cylinders.
      */
-    void exportGeneratedRequests(const std::vector<int>& requests, unsigned int seed, int initialHead, int totalCylinders) const;
+    void exportGeneratedRequests(const vector<int>& requests, unsigned int seed, int initialHead, int totalCylinders) const;
 };
 
 #endif // REPORT_EXPORTER_H

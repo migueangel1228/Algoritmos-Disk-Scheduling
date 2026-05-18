@@ -11,18 +11,20 @@
 #include <iomanip>
 #include <sstream>
 
-AlgorithmResult::AlgorithmResult(const std::string& name, int movement, const std::vector<int>& order)
+using namespace std;
+
+AlgorithmResult::AlgorithmResult(const string& name, int movement, const vector<int>& order)
     : algorithmName(name), totalHeadMovement(movement), serviceOrder(order) {}
 
 void AlgorithmResult::print() const {
-    std::cout << "==========================================" << std::endl;
-    std::cout << "Algorithm             : " << algorithmName << std::endl;
-    std::cout << "Total Head Movement   : " << totalHeadMovement << " cylinders" << std::endl;
-    std::cout << "==========================================" << std::endl;
+    cout << "==========================================" << endl;
+    cout << "Algorithm             : " << algorithmName << endl;
+    cout << "Total Head Movement   : " << totalHeadMovement << " cylinders" << endl;
+    cout << "==========================================" << endl;
 }
 
-std::string AlgorithmResult::toCsvRow(int initialHead, int totalCylinders, int totalRequests, unsigned int seed) const {
-    std::stringstream ss;
+string AlgorithmResult::toCsvRow(int initialHead, int totalCylinders, int totalRequests, unsigned int seed) const {
+    stringstream ss;
     ss << algorithmName << ","
        << totalHeadMovement << ","
        << initialHead << ","

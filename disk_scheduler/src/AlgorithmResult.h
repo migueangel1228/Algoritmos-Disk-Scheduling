@@ -12,11 +12,13 @@
 
 #include <bits/stdc++.h>
 
+using namespace std;
+
 class AlgorithmResult {
 public:
-    std::string algorithmName;
+    string algorithmName;
     int totalHeadMovement;
-    std::vector<int> serviceOrder;
+    vector<int> serviceOrder;
 
     /**
      * @brief   Constructs an AlgorithmResult object.
@@ -24,7 +26,7 @@ public:
      * @param   movement    The total head movement.
      * @param   order       The sequence of serviced cylinders.
      */
-    AlgorithmResult(const std::string& name, int movement, const std::vector<int>& order);
+    AlgorithmResult(const string& name, int movement, const vector<int>& order);
 
     /**
      * @brief   Prints a formatted summary of the result to the console.
@@ -39,7 +41,7 @@ public:
      * @param   seed            The seed used for request generation.
      * @return  A string formatted as a CSV row.
      */
-    std::string toCsvRow(int initialHead, int totalCylinders, int totalRequests, unsigned int seed) const;
+    string toCsvRow(int initialHead, int totalCylinders, int totalRequests, unsigned int seed) const;
 };
 
 #endif // ALGORITHM_RESULT_H

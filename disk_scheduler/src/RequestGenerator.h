@@ -13,6 +13,8 @@
 #include <vector>
 #include <random>
 
+using namespace std;
+
 class RequestGenerator {
 private:
     int totalCylinders;
@@ -32,7 +34,7 @@ public:
      * @brief   Generates the random requests.
      * @return  A vector of integers representing cylinder requests.
      */
-    std::vector<int> generate() const;
+    vector<int> generate() const;
 
     /**
      * @brief   Gets the seed used for generation.
